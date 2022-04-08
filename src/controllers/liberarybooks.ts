@@ -8,7 +8,7 @@ interface Post {
     title: String;
     body: String;
 }
-const getPost = async (req: Request, res: Response, next: NextFunction) => {
+const getbook = async (req: Request, res: Response, next: NextFunction) => {
     let query = "SELECT * FROM users WHERE id = '18'";
     datalog.query(query, (err, rows) => {
         if (err) throw err;
@@ -16,7 +16,7 @@ const getPost = async (req: Request, res: Response, next: NextFunction) => {
         res.send({ rows })
     })
 };
-    const getPosts = async (req: Request, res: Response, next: NextFunction) => {
+    const getbooks = async (req: Request, res: Response, next: NextFunction) => {
         let query = 'SELECT * FROM users';
         datalog.query(query, (err, rows) => {
             if (err) throw err;
@@ -24,26 +24,26 @@ const getPost = async (req: Request, res: Response, next: NextFunction) => {
             res.send({ rows })
         });;
     };
-    const updatePost = async (req: Request, res: Response, next: NextFunction) => {
-            // Generating Query
+    const updatebooks = async (req: Request, res: Response, next: NextFunction) => {
+            
             let query =
-            'UPDATE users SET name = ? WHERE id = ?';
+                "UPDATE publishers SET salary=salary+1000 WHERE salary > 7000";
             // Executing Query
-            datalog.query(query,[req.body.name,req.params.id],(err, rows) => {
+            datalog.query(query, (err, rows) => {
                 if (err) throw err;
                 console.log(rows);
             });
     };
-    const deletePost = async (req: Request, res: Response, next: NextFunction) => {
+    const deletebooks = async (req: Request, res: Response, next: NextFunction) => {
 
             // here is our query
             let query = 'DELETE FROM users ';
-            datalog.query(query, (err, rows) => {
+            datalog.query(query, (err, _rows) => {
                 if (err) throw err;
                 console.log('Cleared users Table');
             });
     };
-    const addPost = async (req: Request, res: Response, next: NextFunction) => {
+    const addbooks = async (req: Request, res: Response, next: NextFunction) => {
         console.log('Add post')
         console.log(req.body);
         let query = `INSERT INTO users (name,city,contact) VALUES (?,?,?);`;
@@ -54,4 +54,4 @@ const getPost = async (req: Request, res: Response, next: NextFunction) => {
         });
     };
 
-    export default { getPosts, getPost, updatePost, deletePost, addPost };
+    export default { getbook, getbooks, updatebooks, deletebooks, addbooks };

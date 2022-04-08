@@ -19,12 +19,10 @@ router.use((req, res, next) => {
     }
     next();
 });
-
 datalog.connect(function(err:any) {
     if (err) {
       return console.error('error: ' + err.message);
-    }
-    
+    }  
     console.log('Connected to the MySQL server.');
   });
 router.use('/', routes);
